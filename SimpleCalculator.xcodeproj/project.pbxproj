@@ -7,15 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4A645B024A47A2600CDFAB9 /* NumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645AF24A47A2600CDFAB9 /* NumberButton.swift */; };
+		B4A645B224A47B8500CDFAB9 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B124A47B8500CDFAB9 /* NumberPad.swift */; };
+		B4A645B424A47D1D00CDFAB9 /* ZeroButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B324A47D1D00CDFAB9 /* ZeroButton.swift */; };
+		B4A645B624A4813800CDFAB9 /* DotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B524A4813800CDFAB9 /* DotButton.swift */; };
+		B4A645B824A482B200CDFAB9 /* SpecialActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B724A482B200CDFAB9 /* SpecialActionButton.swift */; };
+		B4A645BA24A4842200CDFAB9 /* OperationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B924A4842200CDFAB9 /* OperationButton.swift */; };
+		B4A645BC24A484B000CDFAB9 /* EqualSignButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645BB24A484B000CDFAB9 /* EqualSignButton.swift */; };
 		B4E9465924A2BFBC004029B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9465824A2BFBC004029B3 /* AppDelegate.swift */; };
 		B4E9465B24A2BFBC004029B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9465A24A2BFBC004029B3 /* SceneDelegate.swift */; };
 		B4E9465D24A2BFBC004029B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9465C24A2BFBC004029B3 /* ContentView.swift */; };
 		B4E9465F24A2BFBD004029B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E9465E24A2BFBD004029B3 /* Assets.xcassets */; };
 		B4E9466224A2BFBD004029B3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E9466124A2BFBD004029B3 /* Preview Assets.xcassets */; };
 		B4E9466524A2BFBD004029B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4E9466324A2BFBD004029B3 /* LaunchScreen.storyboard */; };
+		B4E9466D24A2C53A004029B3 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9466C24A2C53A004029B3 /* CircleImage.swift */; };
+		B4E9466F24A2C718004029B3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9466E24A2C718004029B3 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B4A645AF24A47A2600CDFAB9 /* NumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberButton.swift; sourceTree = "<group>"; };
+		B4A645B124A47B8500CDFAB9 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
+		B4A645B324A47D1D00CDFAB9 /* ZeroButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroButton.swift; sourceTree = "<group>"; };
+		B4A645B524A4813800CDFAB9 /* DotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotButton.swift; sourceTree = "<group>"; };
+		B4A645B724A482B200CDFAB9 /* SpecialActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialActionButton.swift; sourceTree = "<group>"; };
+		B4A645B924A4842200CDFAB9 /* OperationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationButton.swift; sourceTree = "<group>"; };
+		B4A645BB24A484B000CDFAB9 /* EqualSignButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualSignButton.swift; sourceTree = "<group>"; };
 		B4E9465524A2BFBC004029B3 /* SimpleCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E9465824A2BFBC004029B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4E9465A24A2BFBC004029B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +40,8 @@
 		B4E9466124A2BFBD004029B3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B4E9466424A2BFBD004029B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4E9466624A2BFBD004029B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4E9466C24A2C53A004029B3 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		B4E9466E24A2C718004029B3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +61,10 @@
 				B4E9465724A2BFBC004029B3 /* SimpleCalculator */,
 				B4E9465624A2BFBC004029B3 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 1;
 		};
 		B4E9465624A2BFBC004029B3 /* Products */ = {
 			isa = PBXGroup;
@@ -59,7 +80,16 @@
 				B4E9465824A2BFBC004029B3 /* AppDelegate.swift */,
 				B4E9465A24A2BFBC004029B3 /* SceneDelegate.swift */,
 				B4E9465C24A2BFBC004029B3 /* ContentView.swift */,
+				B4A645B124A47B8500CDFAB9 /* NumberPad.swift */,
+				B4A645B724A482B200CDFAB9 /* SpecialActionButton.swift */,
+				B4A645BB24A484B000CDFAB9 /* EqualSignButton.swift */,
+				B4A645B924A4842200CDFAB9 /* OperationButton.swift */,
+				B4A645AF24A47A2600CDFAB9 /* NumberButton.swift */,
+				B4A645B524A4813800CDFAB9 /* DotButton.swift */,
+				B4A645B324A47D1D00CDFAB9 /* ZeroButton.swift */,
 				B4E9465E24A2BFBD004029B3 /* Assets.xcassets */,
+				B4E9466C24A2C53A004029B3 /* CircleImage.swift */,
+				B4E9466E24A2C718004029B3 /* MapView.swift */,
 				B4E9466324A2BFBD004029B3 /* LaunchScreen.storyboard */,
 				B4E9466624A2BFBD004029B3 /* Info.plist */,
 				B4E9466024A2BFBD004029B3 /* Preview Content */,
@@ -146,9 +176,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4A645BA24A4842200CDFAB9 /* OperationButton.swift in Sources */,
 				B4E9465924A2BFBC004029B3 /* AppDelegate.swift in Sources */,
+				B4A645B624A4813800CDFAB9 /* DotButton.swift in Sources */,
+				B4A645B224A47B8500CDFAB9 /* NumberPad.swift in Sources */,
+				B4E9466D24A2C53A004029B3 /* CircleImage.swift in Sources */,
+				B4E9466F24A2C718004029B3 /* MapView.swift in Sources */,
 				B4E9465B24A2BFBC004029B3 /* SceneDelegate.swift in Sources */,
 				B4E9465D24A2BFBC004029B3 /* ContentView.swift in Sources */,
+				B4A645B824A482B200CDFAB9 /* SpecialActionButton.swift in Sources */,
+				B4A645BC24A484B000CDFAB9 /* EqualSignButton.swift in Sources */,
+				B4A645B024A47A2600CDFAB9 /* NumberButton.swift in Sources */,
+				B4A645B424A47D1D00CDFAB9 /* ZeroButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
