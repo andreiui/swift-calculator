@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B43BAB4724A5BD7000D932C1 /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BAB4624A5BD7000D932C1 /* Display.swift */; };
 		B4A645B024A47A2600CDFAB9 /* NumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645AF24A47A2600CDFAB9 /* NumberButton.swift */; };
 		B4A645B224A47B8500CDFAB9 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B124A47B8500CDFAB9 /* NumberPad.swift */; };
 		B4A645B424A47D1D00CDFAB9 /* ZeroButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B324A47D1D00CDFAB9 /* ZeroButton.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B43BAB4624A5BD7000D932C1 /* Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Display.swift; sourceTree = "<group>"; };
 		B4A645AF24A47A2600CDFAB9 /* NumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberButton.swift; sourceTree = "<group>"; };
 		B4A645B124A47B8500CDFAB9 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
 		B4A645B324A47D1D00CDFAB9 /* ZeroButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroButton.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				B4E9465824A2BFBC004029B3 /* AppDelegate.swift */,
 				B4E9465A24A2BFBC004029B3 /* SceneDelegate.swift */,
 				B4E9465C24A2BFBC004029B3 /* ContentView.swift */,
+				B43BAB4624A5BD7000D932C1 /* Display.swift */,
 				B4A645B124A47B8500CDFAB9 /* NumberPad.swift */,
 				B4A645B724A482B200CDFAB9 /* SpecialActionButton.swift */,
 				B4A645BB24A484B000CDFAB9 /* EqualSignButton.swift */,
@@ -185,6 +188,7 @@
 				B4E9465B24A2BFBC004029B3 /* SceneDelegate.swift in Sources */,
 				B4E9465D24A2BFBC004029B3 /* ContentView.swift in Sources */,
 				B4A645B824A482B200CDFAB9 /* SpecialActionButton.swift in Sources */,
+				B43BAB4724A5BD7000D932C1 /* Display.swift in Sources */,
 				B4A645BC24A484B000CDFAB9 /* EqualSignButton.swift in Sources */,
 				B4A645B024A47A2600CDFAB9 /* NumberButton.swift in Sources */,
 				B4A645B424A47D1D00CDFAB9 /* ZeroButton.swift in Sources */,

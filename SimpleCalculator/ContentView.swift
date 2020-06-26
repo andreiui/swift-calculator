@@ -12,8 +12,13 @@ struct ContentView: View {
 	var body: some View {
 		VStack {
 			Spacer()
+			HStack {
+				Spacer()
+				Display(value: "1.4142")
+			}
 			NumberPad()
 		}
+		.padding()
 	}
 }
 
@@ -21,6 +26,5 @@ struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
 		ContentView()
 			.previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro"))
-			.previewDisplayName("iPhone 11 Pro")
 	}
 }

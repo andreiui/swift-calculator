@@ -17,7 +17,7 @@ struct EqualSignButton: View {
 				.frame(width: 72, height: 72)
 				.font(.largeTitle)
 				.foregroundColor(Color.white)
-				.background(Color(.systemTeal))
+				.background(Color(.systemBlue))
 				.clipShape(Circle())
 		}
 		.buttonStyle(PlainButtonStyle())

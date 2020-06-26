@@ -19,7 +19,7 @@ struct OperationButton: View {
 				.frame(width: 72, height: 72)
 				.font(.largeTitle)
 				.foregroundColor(Color.white)
-				.background(Color(.systemBlue))
+				.background(Color(.systemTeal))
 				.clipShape(Circle())
 		}
 		.buttonStyle(PlainButtonStyle())
