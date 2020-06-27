@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct NumberPad: View {
+	@Binding var input: Input
+	
     var body: some View {
 		VStack {
 			HStack {
@@ -19,38 +21,32 @@ struct NumberPad: View {
 			}
 			.padding(4)
 			HStack {
-				NumberButton(value: 7)
-				NumberButton(value: 8)
-				NumberButton(value: 9)
+				NumberButton(value: 7, input: $input)
+				NumberButton(value: 8, input: $input)
+				NumberButton(value: 9, input: $input)
 				OperationButton(value: "×")
 			}
 			.padding(4)
 			HStack {
-				NumberButton(value: 4)
-				NumberButton(value: 5)
-				NumberButton(value: 6)
+				NumberButton(value: 4, input: $input)
+				NumberButton(value: 5, input: $input)
+				NumberButton(value: 6, input: $input)
 				OperationButton(value: "–")
 			}
 			.padding(4)
 			HStack {
-				NumberButton(value: 1)
-				NumberButton(value: 2)
-				NumberButton(value: 3)
+				NumberButton(value: 1, input: $input)
+				NumberButton(value: 2, input: $input)
+				NumberButton(value: 3, input: $input)
 				OperationButton(value: "+")
 			}
 			.padding(4)
 			HStack {
-				ZeroButton()
+				ZeroButton(input: $input)
 				DotButton()
 				EqualSignButton()
 			}
 			.padding(4)
 		}
-    }
-}
-
-struct NumberPad_Previews: PreviewProvider {
-    static var previews: some View {
-        NumberPad()
     }
 }

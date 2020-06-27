@@ -10,10 +10,16 @@ import SwiftUI
 
 struct NumberButton: View {
 	var value: Int
+	@Binding var input: Input
+	
+	func updateDisplay(digit: String) {
+		self.input.display.append(digit)
+		self.input.display = String(Int(self.input.display) ?? 0)
+	}
 	
     var body: some View {
         Button(action: {
-			
+			self.updateDisplay(digit: String(self.value))
 		}) {
 			Text(String(self.value))
 				.frame(width: 72, height: 72)
@@ -24,11 +30,5 @@ struct NumberButton: View {
 		}
 		.buttonStyle(PlainButtonStyle())
 		.padding(4)
-    }
-}
-
-struct SimpleButton_Previews: PreviewProvider {
-    static var previews: some View {
-        NumberButton(value: 1)
     }
 }

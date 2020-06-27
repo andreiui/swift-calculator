@@ -9,18 +9,12 @@
 import SwiftUI
 
 struct Display: View {
-	@State var value: String
+	@Binding var input: Input
 	
     var body: some View {
-        Text(value)
+		Text(input.display)
 			.frame(alignment: .bottomTrailing)
 			.font(.custom("largerTitle", size: 64))
 			.padding()
-    }
-}
-
-struct Display_Previews: PreviewProvider {
-    static var previews: some View {
-		Display(value: "10")
     }
 }

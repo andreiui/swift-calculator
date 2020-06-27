@@ -9,14 +9,16 @@
 import SwiftUI
 
 struct ContentView: View {
+	@State var input: Input = .init()
+	
 	var body: some View {
 		VStack {
 			Spacer()
 			HStack {
 				Spacer()
-				Display(value: "1.4142")
+				Display(input: $input)
 			}
-			NumberPad()
+			NumberPad(input: $input)
 		}
 		.padding()
 	}

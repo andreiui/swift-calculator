@@ -9,9 +9,16 @@
 import SwiftUI
 
 struct ZeroButton: View {
+	@Binding var input: Input
+	
+	func updateDisplay() {
+		self.input.display.append("0")
+		self.input.display = String(Int(self.input.display) ?? 0)
+	}
+	
     var body: some View {
         Button(action: {
-			
+			self.updateDisplay()
 		}) {
 			Text("0")
 				.frame(width: 130, height: 72, alignment: .leading)
@@ -23,11 +30,5 @@ struct ZeroButton: View {
 		}
 		.buttonStyle(PlainButtonStyle())
 		.padding(4)
-    }
-}
-
-struct ZeroButton_Previews: PreviewProvider {
-    static var previews: some View {
-        ZeroButton()
     }
 }
