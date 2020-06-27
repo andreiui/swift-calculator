@@ -43,7 +43,7 @@ struct NumberPad: View {
 			.padding(4)
 			HStack {
 				ZeroButton(input: $input)
-				DotButton()
+				DotButton(input: $input)
 				EqualSignButton()
 			}
 			.padding(4)

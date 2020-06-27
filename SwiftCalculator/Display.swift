@@ -12,7 +12,7 @@ struct Display: View {
 	@Binding var input: Input
 	
     var body: some View {
-		Text(input.display)
+		Text(input.integer + (input.floating ? "." + input.decimal : ""))
 			.frame(alignment: .bottomTrailing)
 			.font(.custom("largerTitle", size: 64))
 			.padding()

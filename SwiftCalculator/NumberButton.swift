@@ -13,9 +13,14 @@ struct NumberButton: View {
 	@Binding var input: Input
 	
 	func updateDisplay(digit: String) {
-		self.input.display = self.input.display.replacingOccurrences(of: ",", with: "")
-		self.input.display.append(digit)
-		self.input.display = Int(self.input.display)?.formattedWithSeparator ?? "0"
+		if !self.input.floating {
+			self.input.integer = self.input.integer.replacingOccurrences(of: ",", with: "")
+			self.input.integer.append(digit)
+			self.input.integer = Float64(self.input.integer)?.formattedWithSeparator ?? "0"
+		}
+		else {
+			self.input.decimal.append(digit)
+		}
 	}
 	
     var body: some View {

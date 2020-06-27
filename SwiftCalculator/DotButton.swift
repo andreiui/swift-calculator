@@ -9,9 +9,13 @@
 import SwiftUI
 
 struct DotButton: View {
+	@Binding var input: Input
+	
     var body: some View {
         Button(action: {
-			
+			if !self.input.floating {
+				self.input.floating.toggle()
+			}
 		}) {
 			Text(".")
 				.frame(width: 72, height: 72)
@@ -22,11 +26,5 @@ struct DotButton: View {
 		}
 		.buttonStyle(PlainButtonStyle())
 		.padding(4)
-    }
-}
-
-struct DotButton_Previews: PreviewProvider {
-    static var previews: some View {
-        DotButton()
     }
 }

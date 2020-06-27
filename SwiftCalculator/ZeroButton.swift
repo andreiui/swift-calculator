@@ -12,8 +12,13 @@ struct ZeroButton: View {
 	@Binding var input: Input
 	
 	func updateDisplay() {
-		self.input.display.append("0")
-		self.input.display = String(Int(self.input.display) ?? 0)
+		if !self.input.floating {
+			self.input.integer.append("0")
+			self.input.integer = String(Int(self.input.integer) ?? 0)
+		}
+		else {
+			self.input.decimal.append("0")
+		}
 	}
 	
     var body: some View {

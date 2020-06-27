@@ -9,14 +9,16 @@
 import SwiftUI
 
 struct Input {
-	var display: String = "0"
+	var integer: String = "0"
+	var floating: Bool = false
+	var decimal: String = ""
 }
 
 extension Formatter {
     static let withSeparator: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-		formatter.locale = Locale.current
+		formatter.groupingSeparator = ","
         return formatter
     }()
 }
