@@ -13,8 +13,9 @@ struct NumberButton: View {
 	@Binding var input: Input
 	
 	func updateDisplay(digit: String) {
+		self.input.display = self.input.display.replacingOccurrences(of: ",", with: "")
 		self.input.display.append(digit)
-		self.input.display = String(Int(self.input.display) ?? 0)
+		self.input.display = Int(self.input.display)?.formattedWithSeparator ?? "0"
 	}
 	
     var body: some View {
