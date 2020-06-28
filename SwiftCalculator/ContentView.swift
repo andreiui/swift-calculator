@@ -16,7 +16,7 @@ struct ContentView: View {
 			Spacer()
 			HStack {
 				Spacer()
-				Display(input: $input)
+				DisplayView(input: $input)
 			}
 			NumberPad(input: $input)
 		}

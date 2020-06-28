@@ -14,9 +14,9 @@ struct NumberPad: View {
     var body: some View {
 		VStack {
 			HStack {
-				SpecialActionButton(value: "AC")
-				SpecialActionButton(value: "+/-")
-				SpecialActionButton(value: "%")
+				ClearButton(input: $input)
+				ChangeSignButton(input: $input)
+				PercentButton(input: $input)
 				OperationButton(value: "÷")
 			}
 			.padding(4)

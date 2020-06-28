@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct SpecialActionButton: View {
-	var value: String
+struct ClearButton: View {
+    @Binding var input: Input
 	
     var body: some View {
         Button(action: {
-			
+			self.input = .init()
 		}) {
-			Text(self.value)
+			Text(input.clear)
 				.frame(width: 72, height: 72)
 				.font(.title)
 				.foregroundColor(Color.white)
@@ -27,8 +27,40 @@ struct SpecialActionButton: View {
     }
 }
 
-struct SpecialActionButton_Previews: PreviewProvider {
-    static var previews: some View {
-		SpecialActionButton(value: "±")
+struct ChangeSignButton: View {
+    @Binding var input: Input
+	
+    var body: some View {
+        Button(action: {
+			self.input.signed.toggle()
+		}) {
+			Text("+/-")
+				.frame(width: 72, height: 72)
+				.font(.title)
+				.foregroundColor(Color.white)
+				.background(Color(.systemGray2))
+				.clipShape(Circle())
+		}
+		.buttonStyle(PlainButtonStyle())
+		.padding(4)
+    }
+}
+
+struct PercentButton: View {
+    @Binding var input: Input
+	
+    var body: some View {
+        Button(action: {
+			
+		}) {
+			Text("%")
+				.frame(width: 72, height: 72)
+				.font(.title)
+				.foregroundColor(Color.white)
+				.background(Color(.systemGray2))
+				.clipShape(Circle())
+		}
+		.buttonStyle(PlainButtonStyle())
+		.padding(4)
     }
 }

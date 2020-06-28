@@ -12,6 +12,16 @@ struct Input {
 	var integer: String = "0"
 	var floating: Bool = false
 	var decimal: String = ""
+	var clear: String = "AC"
+	var signed: Bool = false
+	
+	func getDisplay() -> String {
+		return (
+			(signed ? "-" : "") +
+			String(Int(integer)?.formattedWithSeparator ?? "0") +
+			(floating ? "." + decimal : "")
+		)
+	}
 }
 
 extension Formatter {

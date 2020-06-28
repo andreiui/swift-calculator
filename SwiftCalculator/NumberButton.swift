@@ -13,10 +13,9 @@ struct NumberButton: View {
 	@Binding var input: Input
 	
 	func updateDisplay(digit: String) {
+		self.input.clear = "C"
 		if !self.input.floating {
-			self.input.integer = self.input.integer.replacingOccurrences(of: ",", with: "")
 			self.input.integer.append(digit)
-			self.input.integer = Float64(self.input.integer)?.formattedWithSeparator ?? "0"
 		}
 		else {
 			self.input.decimal.append(digit)
@@ -38,3 +37,55 @@ struct NumberButton: View {
 		.padding(4)
     }
 }
+
+struct ZeroButton: View {
+	@Binding var input: Input
+	
+	func updateDisplay() {
+		if !self.input.floating {
+			self.input.integer.append("0")
+		}
+		else {
+			self.input.decimal.append("0")
+		}
+	}
+	
+    var body: some View {
+        Button(action: {
+			self.updateDisplay()
+		}) {
+			Text("0")
+				.frame(width: 133, height: 72, alignment: .leading)
+				.padding(.leading, 26)
+				.font(.largeTitle)
+				.foregroundColor(Color.white)
+				.background(Color(.systemGray4))
+				.cornerRadius(100)
+		}
+		.buttonStyle(PlainButtonStyle())
+		.padding(4)
+    }
+}
+
+struct DotButton: View {
+	@Binding var input: Input
+	
+    var body: some View {
+        Button(action: {
+			self.input.clear = "C"
+			if !self.input.floating {
+				self.input.floating.toggle()
+			}
+		}) {
+			Text(".")
+				.frame(width: 72, height: 72)
+				.font(.largeTitle)
+				.foregroundColor(Color.white)
+				.background(Color(.systemGray4))
+				.cornerRadius(100)
+		}
+		.buttonStyle(PlainButtonStyle())
+		.padding(4)
+    }
+}
+

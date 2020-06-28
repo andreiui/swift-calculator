@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B405A73324A7374E0056D8E2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B405A73224A7374E0056D8E2 /* Model.swift */; };
-		B43BAB4724A5BD7000D932C1 /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BAB4624A5BD7000D932C1 /* Display.swift */; };
-		B4A645B024A47A2600CDFAB9 /* NumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645AF24A47A2600CDFAB9 /* NumberButton.swift */; };
+		B43BAB4724A5BD7000D932C1 /* DisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BAB4624A5BD7000D932C1 /* DisplayView.swift */; };
 		B4A645B224A47B8500CDFAB9 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B124A47B8500CDFAB9 /* NumberPad.swift */; };
-		B4A645B424A47D1D00CDFAB9 /* ZeroButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B324A47D1D00CDFAB9 /* ZeroButton.swift */; };
-		B4A645B624A4813800CDFAB9 /* DotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B524A4813800CDFAB9 /* DotButton.swift */; };
 		B4A645B824A482B200CDFAB9 /* SpecialActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B724A482B200CDFAB9 /* SpecialActionButton.swift */; };
 		B4A645BA24A4842200CDFAB9 /* OperationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B924A4842200CDFAB9 /* OperationButton.swift */; };
 		B4A645BC24A484B000CDFAB9 /* EqualSignButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645BB24A484B000CDFAB9 /* EqualSignButton.swift */; };
@@ -24,15 +21,13 @@
 		B4E9466524A2BFBD004029B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4E9466324A2BFBD004029B3 /* LaunchScreen.storyboard */; };
 		B4E9466D24A2C53A004029B3 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9466C24A2C53A004029B3 /* CircleImage.swift */; };
 		B4E9466F24A2C718004029B3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9466E24A2C718004029B3 /* MapView.swift */; };
+		B4ED29A424A82085001062E0 /* NumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED29A324A82084001062E0 /* NumberButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B405A73224A7374E0056D8E2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		B43BAB4624A5BD7000D932C1 /* Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Display.swift; sourceTree = "<group>"; };
-		B4A645AF24A47A2600CDFAB9 /* NumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberButton.swift; sourceTree = "<group>"; };
+		B43BAB4624A5BD7000D932C1 /* DisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayView.swift; sourceTree = "<group>"; };
 		B4A645B124A47B8500CDFAB9 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
-		B4A645B324A47D1D00CDFAB9 /* ZeroButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroButton.swift; sourceTree = "<group>"; };
-		B4A645B524A4813800CDFAB9 /* DotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotButton.swift; sourceTree = "<group>"; };
 		B4A645B724A482B200CDFAB9 /* SpecialActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialActionButton.swift; sourceTree = "<group>"; };
 		B4A645B924A4842200CDFAB9 /* OperationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationButton.swift; sourceTree = "<group>"; };
 		B4A645BB24A484B000CDFAB9 /* EqualSignButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualSignButton.swift; sourceTree = "<group>"; };
@@ -46,6 +41,7 @@
 		B4E9466624A2BFBD004029B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4E9466C24A2C53A004029B3 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		B4E9466E24A2C718004029B3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		B4ED29A324A82084001062E0 /* NumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,14 +81,12 @@
 				B4E9465A24A2BFBC004029B3 /* SceneDelegate.swift */,
 				B405A73224A7374E0056D8E2 /* Model.swift */,
 				B4E9465C24A2BFBC004029B3 /* ContentView.swift */,
-				B43BAB4624A5BD7000D932C1 /* Display.swift */,
+				B43BAB4624A5BD7000D932C1 /* DisplayView.swift */,
 				B4A645B124A47B8500CDFAB9 /* NumberPad.swift */,
 				B4A645B724A482B200CDFAB9 /* SpecialActionButton.swift */,
 				B4A645BB24A484B000CDFAB9 /* EqualSignButton.swift */,
+				B4ED29A324A82084001062E0 /* NumberButton.swift */,
 				B4A645B924A4842200CDFAB9 /* OperationButton.swift */,
-				B4A645AF24A47A2600CDFAB9 /* NumberButton.swift */,
-				B4A645B524A4813800CDFAB9 /* DotButton.swift */,
-				B4A645B324A47D1D00CDFAB9 /* ZeroButton.swift */,
 				B4E9465E24A2BFBD004029B3 /* Assets.xcassets */,
 				B4E9466C24A2C53A004029B3 /* CircleImage.swift */,
 				B4E9466E24A2C718004029B3 /* MapView.swift */,
@@ -184,18 +178,16 @@
 			files = (
 				B4A645BA24A4842200CDFAB9 /* OperationButton.swift in Sources */,
 				B4E9465924A2BFBC004029B3 /* AppDelegate.swift in Sources */,
-				B4A645B624A4813800CDFAB9 /* DotButton.swift in Sources */,
 				B4A645B224A47B8500CDFAB9 /* NumberPad.swift in Sources */,
 				B4E9466D24A2C53A004029B3 /* CircleImage.swift in Sources */,
 				B4E9466F24A2C718004029B3 /* MapView.swift in Sources */,
 				B4E9465B24A2BFBC004029B3 /* SceneDelegate.swift in Sources */,
+				B4ED29A424A82085001062E0 /* NumberButton.swift in Sources */,
 				B405A73324A7374E0056D8E2 /* Model.swift in Sources */,
 				B4E9465D24A2BFBC004029B3 /* ContentView.swift in Sources */,
 				B4A645B824A482B200CDFAB9 /* SpecialActionButton.swift in Sources */,
-				B43BAB4724A5BD7000D932C1 /* Display.swift in Sources */,
+				B43BAB4724A5BD7000D932C1 /* DisplayView.swift in Sources */,
 				B4A645BC24A484B000CDFAB9 /* EqualSignButton.swift in Sources */,
-				B4A645B024A47A2600CDFAB9 /* NumberButton.swift in Sources */,
-				B4A645B424A47D1D00CDFAB9 /* ZeroButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
