@@ -22,6 +22,14 @@ struct Input {
 			(floating ? "." + decimal : "")
 		)
 	}
+	
+	func getSize() -> Int {
+		var count = 0;
+		for i in integer {
+			if (i >= "0" && i <= "9") { count += 1 }
+		}
+		return count + decimal.count
+	}
 }
 
 extension Formatter {

@@ -14,7 +14,9 @@ struct DisplayView: View {
     var body: some View {
 		Text(input.getDisplay())
 			.frame(alignment: .bottomTrailing)
-			.font(.custom("largerTitle", size: 56))
+			.font(.system(size: 56))
+			.minimumScaleFactor(0.0005)
+			.lineLimit(1)
 			.padding()
     }
 }
