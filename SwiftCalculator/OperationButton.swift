@@ -26,9 +26,3 @@ struct OperationButton: View {
 		.padding(4)
     }
 }
-
-struct OperationButton_Previews: PreviewProvider {
-    static var previews: some View {
-		OperationButton(value: "+")
-    }
-}

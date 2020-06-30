@@ -9,26 +9,51 @@
 import SwiftUI
 
 struct Input {
-	var integer: String = "0"
+	var exponent: String = "0"
 	var floating: Bool = false
-	var decimal: String = ""
-	var clear: String = "AC"
+	var significand: String = ""
 	var signed: Bool = false
+	var clear: String = "AC"
 	
 	func getDisplay() -> String {
 		return (
 			(signed ? "-" : "") +
-			String(Int(integer)?.formattedWithSeparator ?? "0") +
-			(floating ? "." + decimal : "")
+			(exponent.contains("e") ? exponent : String(Int(exponent)?.formattedWithSeparator ?? "0")) +
+			(floating ? "." + significand : "")
 		)
 	}
 	
 	func getSize() -> Int {
 		var count = 0;
-		for i in integer {
+		for i in exponent {
 			if (i >= "0" && i <= "9") { count += 1 }
 		}
-		return count + decimal.count
+		return count + significand.count
+	}
+	
+	func getNumber() -> Double {
+		return Double(getDisplay().replacingOccurrences(of: ",", with: "")) ?? 0.0
+	}
+	
+	mutating func setNumber(double: Double) -> Void {
+		let precision: Double = 100000000000000000.0
+		let number = String(double >= 0 ? Double(round(precision * double) / precision) : -Double(round(precision * double) / precision))
+		if !number.contains("e") {
+			exponent = String(number[..<(number.firstIndex(of: ".") ?? number.endIndex)])
+			floating = false
+			significand = String(number[(number.index(number.firstIndex(of: ".") ?? number.endIndex, offsetBy: 1))..<number.endIndex])
+			if significand == "0" {
+				significand = ""
+				floating = false
+			}
+			else { floating = true }
+		}
+		else {
+			exponent = number
+			floating = false
+			significand = ""
+		}
+		signed = double < 0 ? true : false
 	}
 }
 

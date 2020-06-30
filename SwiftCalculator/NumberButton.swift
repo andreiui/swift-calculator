@@ -16,10 +16,10 @@ struct NumberButton: View {
 		self.input.clear = "C"
 		if self.input.getSize() < 10 {
 			if !self.input.floating {
-				self.input.integer.append(digit)
+				self.input.exponent.append(digit)
 			}
 			else {
-				self.input.decimal.append(digit)
+				self.input.significand.append(digit)
 			}
 		}
 	}
@@ -46,10 +46,10 @@ struct ZeroButton: View {
 	func updateDisplay() {
 		if self.input.getSize() < 10 {
 			if !self.input.floating {
-				self.input.integer.append("0")
+				if self.input.exponent != "0" { self.input.exponent.append("0") }
 			}
 			else {
-				self.input.decimal.append("0")
+				self.input.significand.append("0")
 			}
 		}
 	}
