@@ -32,7 +32,7 @@ struct ChangeSignButton: View {
 	
     var body: some View {
         Button(action: {
-			self.input.signed.toggle()
+			self.input.number.signed.toggle()
 		}) {
 			Text("+/-")
 				.frame(width: 72, height: 72)
@@ -51,8 +51,8 @@ struct PercentButton: View {
 	
     var body: some View {
         Button(action: {
-			self.input.setNumber(
-				double: self.input.getNumber() / 100.0
+			self.input.number.setNumber(
+				double: self.input.number.getNumber() / 100.0
 			)
 		}) {
 			Text("%")

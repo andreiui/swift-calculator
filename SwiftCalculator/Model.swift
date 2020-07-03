@@ -8,12 +8,11 @@
 
 import SwiftUI
 
-struct Input {
+struct Number {
 	var exponent: String = "0"
 	var floating: Bool = false
 	var significand: String = ""
 	var signed: Bool = false
-	var clear: String = "AC"
 	
 	func getDisplay() -> String {
 		return (
@@ -55,6 +54,11 @@ struct Input {
 		}
 		signed = double < 0 ? true : false
 	}
+}
+
+struct Input {
+	var number: Number = .init()
+	var clear: String = "AC"
 }
 
 extension Formatter {
