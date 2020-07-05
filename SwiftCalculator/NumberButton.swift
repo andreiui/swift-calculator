@@ -12,21 +12,9 @@ struct NumberButton: View {
 	var value: Int
 	@Binding var input: Input
 	
-	func updateDisplay(digit: String) {
-		self.input.clear = "C"
-		if self.input.number.getSize() < 10 {
-			if !self.input.number.floating {
-				self.input.number.exponent.append(digit)
-			}
-			else {
-				self.input.number.significand.append(digit)
-			}
-		}
-	}
-	
     var body: some View {
         Button(action: {
-			self.updateDisplay(digit: String(self.value))
+			self.input.updateDisplay(value: String(self.value))
 		}) {
 			Text(String(self.value))
 				.frame(width: 72, height: 72)
@@ -43,20 +31,9 @@ struct NumberButton: View {
 struct ZeroButton: View {
 	@Binding var input: Input
 	
-	func updateDisplay() {
-		if self.input.number.getSize() < 10 {
-			if !self.input.number.floating {
-				if self.input.number.exponent != "0" { self.input.number.exponent.append("0") }
-			}
-			else {
-				self.input.number.significand.append("0")
-			}
-		}
-	}
-	
     var body: some View {
         Button(action: {
-			self.updateDisplay()
+			self.input.updateDisplay(value: "0")
 		}) {
 			Text("0")
 				.frame(width: 133, height: 72, alignment: .leading)
@@ -76,12 +53,7 @@ struct DotButton: View {
 	
     var body: some View {
         Button(action: {
-			if self.input.number.getSize() < 10 {
-				self.input.clear = "C"
-				if !self.input.number.floating {
-					self.input.number.floating.toggle()
-				}
-			}
+			self.input.updateDisplay(value: ".")
 		}) {
 			Text(".")
 				.frame(width: 72, height: 72)

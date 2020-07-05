@@ -17,28 +17,28 @@ struct NumberPad: View {
 				ClearButton(input: $input)
 				ChangeSignButton(input: $input)
 				PercentButton(input: $input)
-				OperationButton(value: "÷")
+				OperationButton(operation: "÷", input: $input)
 			}
 			.padding(4)
 			HStack {
 				NumberButton(value: 7, input: $input)
 				NumberButton(value: 8, input: $input)
 				NumberButton(value: 9, input: $input)
-				OperationButton(value: "×")
+				OperationButton(operation: "×", input: $input)
 			}
 			.padding(4)
 			HStack {
 				NumberButton(value: 4, input: $input)
 				NumberButton(value: 5, input: $input)
 				NumberButton(value: 6, input: $input)
-				OperationButton(value: "–")
+				OperationButton(operation: "–", input: $input)
 			}
 			.padding(4)
 			HStack {
 				NumberButton(value: 1, input: $input)
 				NumberButton(value: 2, input: $input)
 				NumberButton(value: 3, input: $input)
-				OperationButton(value: "+")
+				OperationButton(operation: "+", input: $input)
 			}
 			.padding(4)
 			HStack {

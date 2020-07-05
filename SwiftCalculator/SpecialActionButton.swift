@@ -13,7 +13,9 @@ struct ClearButton: View {
 	
     var body: some View {
         Button(action: {
-			self.input = .init()
+			self.input.clear = "AC"
+			self.input.number = .init()
+			withAnimation { self.input = .init() }
 		}) {
 			Text(input.clear)
 				.frame(width: 72, height: 72)

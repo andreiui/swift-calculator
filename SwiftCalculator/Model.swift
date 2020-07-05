@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Number {
-	var exponent: String = "0"
+	var exponent: String = ""
 	var floating: Bool = false
 	var significand: String = ""
 	var signed: Bool = false
@@ -58,7 +58,30 @@ struct Number {
 
 struct Input {
 	var number: Number = .init()
+	var numbers: [Number] = []
+	var operation: String = ""
 	var clear: String = "AC"
+	
+	mutating func setOperation(operation: String) -> Void {
+		self.operation = operation
+	}
+	
+	mutating func updateDisplay(value: String) {
+		self.clear = "C"
+		if self.number.getSize() < 9 {
+			if value == "." {
+				if !self.number.floating {
+					self.number.floating.toggle()
+				}
+			}
+			else if !self.number.floating {
+				self.number.exponent.append(value)
+			}
+			else {
+				self.number.significand.append(value)
+			}
+		}
+	}
 }
 
 extension Formatter {

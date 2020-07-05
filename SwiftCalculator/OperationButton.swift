@@ -9,17 +9,18 @@
 import SwiftUI
 
 struct OperationButton: View {
-	var value: String
+	var operation: String
+	@Binding var input: Input
 	
     var body: some View {
         Button(action: {
-			
+			withAnimation { self.input.setOperation(operation: self.operation) }
 		}) {
-			Text(self.value)
+			Text(self.operation)
 				.frame(width: 72, height: 72)
 				.font(.largeTitle)
-				.foregroundColor(Color.white)
-				.background(Color(.systemTeal))
+				.foregroundColor(self.input.operation != operation ? Color.white : Color(.systemTeal))
+				.background(self.input.operation != operation ? Color(.systemTeal) : Color.black)
 				.clipShape(Circle())
 		}
 		.buttonStyle(PlainButtonStyle())
