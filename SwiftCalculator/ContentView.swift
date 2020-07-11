@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  SimpleCalculator
+//  SwiftUICalculator
 //
 //  Created by Andrei Pascu on 6/23/20.
 //  Copyright © 2020 Andrei Pascu. All rights reserved.

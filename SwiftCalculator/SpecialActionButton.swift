@@ -1,6 +1,6 @@
 //
 //  SpecialActionButton.swift
-//  SimpleCalculator
+//  SwiftUICalculator
 //
 //  Created by Andrei Pascu on 6/24/20.
 //  Copyright © 2020 Andrei Pascu. All rights reserved.
@@ -13,11 +13,9 @@ struct ClearButton: View {
 	
     var body: some View {
         Button(action: {
-			self.input.clear = "AC"
-			self.input.number = .init()
-			withAnimation { self.input = .init() }
+			self.input.resetDisplay()
 		}) {
-			Text(input.clear)
+			Text(input.clear ? "AC" : "C")
 				.frame(width: 72, height: 72)
 				.font(.title)
 				.foregroundColor(Color.white)

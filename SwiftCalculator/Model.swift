@@ -1,6 +1,6 @@
 //
 //  Model.swift
-//  SimpleCalculator
+//  SwiftUICalculator
 //
 //  Created by Andrei Pascu on 6/26/20.
 //  Copyright © 2020 Andrei Pascu. All rights reserved.
@@ -14,6 +14,14 @@ struct Number {
 	var significand: String = ""
 	var signed: Bool = false
 	
+	init (double: Double = 0) {
+		self.setNumber(double: double)
+	}
+	
+	func isNew() -> Bool {
+		return (exponent == "" && !floating && significand == "")
+	}
+	
 	func getDisplay() -> String {
 		return (
 			(signed ? "-" : "") +
@@ -23,11 +31,7 @@ struct Number {
 	}
 	
 	func getSize() -> Int {
-		var count = 0;
-		for i in exponent {
-			if (i >= "0" && i <= "9") { count += 1 }
-		}
-		return count + significand.count
+		return exponent.count + significand.count
 	}
 	
 	func getNumber() -> Double {
@@ -54,33 +58,147 @@ struct Number {
 		}
 		signed = double < 0 ? true : false
 	}
+	
+	mutating func appendToNumber(value: String) {
+		if self.getSize() < 9 {
+			if value == "." {
+				if !self.floating { self.floating.toggle() }
+			}
+			else {
+				if !self.floating { self.exponent.append(value) }
+				else { self.significand.append(value) }
+			}
+		}
+	}
 }
 
 struct Input {
 	var number: Number = .init()
-	var numbers: [Number] = []
-	var operation: String = ""
-	var clear: String = "AC"
+	private(set) var numbers: [Number] = []
+	private(set) var operation: String = ""
+	private(set) var clear: Bool = true
+	
+	mutating func resetDisplay() -> Void {
+		self = .init()
+	}
+	
+	mutating func updateDisplay(value: String) {
+		self.clear = false
+		if operation != "" {
+			numbers.append(number)
+			number = .init()
+			operation = ""
+		}
+		if self.number.getSize() <= 9 {
+			if value == "." {
+				if !self.number.floating { self.number.floating.toggle() }
+			}
+			else {
+				if !self.number.floating { self.number.exponent.append(value) }
+				else { self.number.significand.append(value) }
+			}
+		}
+	}
 	
 	mutating func setOperation(operation: String) -> Void {
 		self.operation = operation
 	}
 	
-	mutating func updateDisplay(value: String) {
-		self.clear = "C"
-		if self.number.getSize() < 9 {
-			if value == "." {
-				if !self.number.floating {
-					self.number.floating.toggle()
-				}
-			}
-			else if !self.number.floating {
-				self.number.exponent.append(value)
-			}
-			else {
-				self.number.significand.append(value)
-			}
+	mutating func retrieveResult() -> Void {
+		self.numbers.reverse()
+		let result = self.numbers.reduce(self.number.getNumber(), {
+			(result: Double, nextItem: Number) -> Double in
+			return doOperation(x: result, y: nextItem.getNumber(), operation: "+")
+		})
+		self.number = .init(double: result)
+		self.numbers = [self.number]
+	}
+	
+	func doOperation(x: Double, y: Double, operation: String) -> Double {
+		switch operation {
+		case "+":
+			return x + y
+		case "-":
+			return x - y
+		case "×":
+			return x * y
+		case "÷":
+			return x / y
+		default:
+			return 0
 		}
+	}
+}
+
+struct Model {
+	private var onDisplayView: Display = .init()
+	private var inputFromUser: Number = .init()
+	private var orderForInstr: [Instruction] = []
+	private(set) var operation: String = ""
+	private(set) var reset: Bool = true
+	
+	mutating func clearOnDisplayView() -> Void {
+		self = .init()
+	}
+	
+	func retrieveOnDisplayView() -> String {
+		return onDisplayView.getDisplay()
+	}
+	
+	private mutating func updateOnDisplayView(number: Number) -> Void {
+		onDisplayView.setDisplay(display: number.getDisplay())
+	}
+	
+	private mutating func updateInputFromUser(value: String) -> Void {
+		inputFromUser.appendToNumber(value: value)
+		reset = false
+	}
+	
+	private mutating func overwriteInputFromUser(double: Double) -> Void {
+		inputFromUser.setNumber(double: double)
+	}
+	
+	private mutating func appendToOrderOfInstr() -> Void {
+		let newInstruction = Instruction(number: inputFromUser, operation: operation)
+		orderForInstr.append(newInstruction)
+	}
+	
+	mutating func updateOperation(operation: String) -> Void {
+		self.operation = operation
+	}
+}
+
+private struct Display {
+	private var display: String
+	
+	init(number: Number = .init()) {
+		display = number.getDisplay()
+	}
+	
+	func getDisplay() -> String {
+		return self.display
+	}
+	
+	mutating func setDisplay(display: String) -> Void {
+		self.display = display
+	}
+}
+
+private struct Instruction {
+	private var number: Number
+	private var operation: String
+	
+	init(number: Number, operation: String) {
+		self.number = number
+		self.operation = operation
+	}
+	
+	func getOperation() -> String {
+		return operation
+	}
+	
+	func getNumber() -> Number {
+		return number
 	}
 }
 
