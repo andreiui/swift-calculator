@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Number {
-	var exponent: String = ""
+	var exponent: String = "0"
 	var floating: Bool = false
 	var significand: String = ""
 	var signed: Bool = false
@@ -20,6 +20,10 @@ struct Number {
 	
 	func isNew() -> Bool {
 		return (exponent == "" && !floating && significand == "")
+	}
+	
+	mutating func toggleSigned() -> Void {
+		signed.toggle()
 	}
 	
 	func getDisplay() -> String {
@@ -59,86 +63,34 @@ struct Number {
 		signed = double < 0 ? true : false
 	}
 	
-	mutating func appendToNumber(value: String) {
-		if self.getSize() < 9 {
-			if value == "." {
-				if !self.floating { self.floating.toggle() }
-			}
-			else {
-				if !self.floating { self.exponent.append(value) }
-				else { self.significand.append(value) }
-			}
+	mutating func appendToNumber(value: String) -> Bool {
+		if self.getSize() > 9 { return false }
+		if value == "0" && exponent == "0" { return false }
+		
+		if value == "." {
+			if !self.floating { self.floating.toggle() }
 		}
+		else {
+			if !self.floating { self.exponent.append(value) }
+			else { self.significand.append(value) }
+		}
+		return true
 	}
 }
 
 struct Input {
-	var number: Number = .init()
-	private(set) var numbers: [Number] = []
-	private(set) var operation: String = ""
-	private(set) var clear: Bool = true
-	
-	mutating func resetDisplay() -> Void {
-		self = .init()
-	}
-	
-	mutating func updateDisplay(value: String) {
-		self.clear = false
-		if operation != "" {
-			numbers.append(number)
-			number = .init()
-			operation = ""
-		}
-		if self.number.getSize() <= 9 {
-			if value == "." {
-				if !self.number.floating { self.number.floating.toggle() }
-			}
-			else {
-				if !self.number.floating { self.number.exponent.append(value) }
-				else { self.number.significand.append(value) }
-			}
-		}
-	}
-	
-	mutating func setOperation(operation: String) -> Void {
-		self.operation = operation
-	}
-	
-	mutating func retrieveResult() -> Void {
-		self.numbers.reverse()
-		let result = self.numbers.reduce(self.number.getNumber(), {
-			(result: Double, nextItem: Number) -> Double in
-			return doOperation(x: result, y: nextItem.getNumber(), operation: "+")
-		})
-		self.number = .init(double: result)
-		self.numbers = [self.number]
-	}
-	
-	func doOperation(x: Double, y: Double, operation: String) -> Double {
-		switch operation {
-		case "+":
-			return x + y
-		case "-":
-			return x - y
-		case "×":
-			return x * y
-		case "÷":
-			return x / y
-		default:
-			return 0
-		}
-	}
-}
-
-struct Model {
 	private var onDisplayView: Display = .init()
 	private var inputFromUser: Number = .init()
 	private var orderForInstr: [Instruction] = []
 	private(set) var operation: String = ""
 	private(set) var reset: Bool = true
 	
-	mutating func clearOnDisplayView() -> Void {
+	mutating func resetInput() -> Void {
 		self = .init()
+	}
+	
+	mutating func clearOnDisplayView() -> Void {
+		onDisplayView = .init()
 	}
 	
 	func retrieveOnDisplayView() -> String {
@@ -146,12 +98,19 @@ struct Model {
 	}
 	
 	private mutating func updateOnDisplayView(number: Number) -> Void {
-		onDisplayView.setDisplay(display: number.getDisplay())
+		onDisplayView.setDisplay(number: number)
 	}
 	
 	private mutating func updateInputFromUser(value: String) -> Void {
-		inputFromUser.appendToNumber(value: value)
-		reset = false
+		let status = inputFromUser.appendToNumber(value: value)
+		reset = reset && !status
+	}
+	
+	private mutating func resetInputFromUser(value: String = "") -> Void {
+		inputFromUser = .init()
+		if value != "" {
+			_ = inputFromUser.appendToNumber(value: value)
+		}
 	}
 	
 	private mutating func overwriteInputFromUser(double: Double) -> Void {
@@ -166,6 +125,22 @@ struct Model {
 	mutating func updateOperation(operation: String) -> Void {
 		self.operation = operation
 	}
+	
+	mutating func numberButtonPressed(value: String) -> Void {
+		if operation == "" {
+			updateInputFromUser(value: value)
+		}
+		else {
+			resetInputFromUser()
+			operation = ""
+		}
+		updateOnDisplayView(number: inputFromUser)
+	}
+	
+	mutating func changeSignButtonPressed() -> Void {
+		inputFromUser.toggleSigned()
+		updateOnDisplayView(number: inputFromUser)
+	}
 }
 
 private struct Display {
@@ -176,11 +151,11 @@ private struct Display {
 	}
 	
 	func getDisplay() -> String {
-		return self.display
+		return display
 	}
 	
-	mutating func setDisplay(display: String) -> Void {
-		self.display = display
+	mutating func setDisplay(number: Number) -> Void {
+		display = number.getDisplay()
 	}
 }
 

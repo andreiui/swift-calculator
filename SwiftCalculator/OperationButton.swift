@@ -14,7 +14,7 @@ struct OperationButton: View {
 	
     var body: some View {
         Button(action: {
-			withAnimation { self.input.setOperation(operation: self.operation) }
+			withAnimation { self.input.updateOperation(operation: self.operation) }
 		}) {
 			Text(self.operation)
 				.frame(width: 72, height: 72)

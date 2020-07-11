@@ -13,9 +13,10 @@ struct ClearButton: View {
 	
     var body: some View {
         Button(action: {
-			self.input.resetDisplay()
+			self.input.clearOnDisplayView()
+			withAnimation { self.input.resetInput() }
 		}) {
-			Text(input.clear ? "AC" : "C")
+			Text(input.reset ? "AC" : "C")
 				.frame(width: 72, height: 72)
 				.font(.title)
 				.foregroundColor(Color.white)
@@ -32,7 +33,7 @@ struct ChangeSignButton: View {
 	
     var body: some View {
         Button(action: {
-			self.input.number.signed.toggle()
+			self.input.changeSignButtonPressed()
 		}) {
 			Text("+/-")
 				.frame(width: 72, height: 72)
@@ -51,9 +52,7 @@ struct PercentButton: View {
 	
     var body: some View {
         Button(action: {
-			self.input.number.setNumber(
-				double: self.input.number.getNumber() / 100.0
-			)
+			
 		}) {
 			Text("%")
 				.frame(width: 72, height: 72)
