@@ -1,5 +1,5 @@
 //
-//  SpecialActionButton.swift
+//  SpecialButton.swift
 //  SwiftUICalculator
 //
 //  Created by Andrei Pascu on 6/24/20.
@@ -16,7 +16,7 @@ struct ClearButton: View {
 			self.input.clearOnDisplayView()
 			withAnimation { self.input.resetInput() }
 		}) {
-			Text(input.reset ? "AC" : "C")
+			Text(input.clear ? "AC" : "C")
 				.frame(width: 72, height: 72)
 				.font(.title)
 				.foregroundColor(Color.white)
@@ -52,7 +52,7 @@ struct PercentButton: View {
 	
     var body: some View {
         Button(action: {
-			
+			self.input.percentButtonPressed()
 		}) {
 			Text("%")
 				.frame(width: 72, height: 72)

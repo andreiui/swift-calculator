@@ -10,7 +10,7 @@
 		B405A73324A7374E0056D8E2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B405A73224A7374E0056D8E2 /* Model.swift */; };
 		B43BAB4724A5BD7000D932C1 /* DisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BAB4624A5BD7000D932C1 /* DisplayView.swift */; };
 		B4A645B224A47B8500CDFAB9 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B124A47B8500CDFAB9 /* NumberPad.swift */; };
-		B4A645B824A482B200CDFAB9 /* SpecialActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B724A482B200CDFAB9 /* SpecialActionButton.swift */; };
+		B4A645B824A482B200CDFAB9 /* SpecialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B724A482B200CDFAB9 /* SpecialButton.swift */; };
 		B4A645BA24A4842200CDFAB9 /* OperationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645B924A4842200CDFAB9 /* OperationButton.swift */; };
 		B4A645BC24A484B000CDFAB9 /* EqualSignButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A645BB24A484B000CDFAB9 /* EqualSignButton.swift */; };
 		B4E9465924A2BFBC004029B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9465824A2BFBC004029B3 /* AppDelegate.swift */; };
@@ -26,7 +26,7 @@
 		B405A73224A7374E0056D8E2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B43BAB4624A5BD7000D932C1 /* DisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayView.swift; sourceTree = "<group>"; };
 		B4A645B124A47B8500CDFAB9 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
-		B4A645B724A482B200CDFAB9 /* SpecialActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialActionButton.swift; sourceTree = "<group>"; };
+		B4A645B724A482B200CDFAB9 /* SpecialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialButton.swift; sourceTree = "<group>"; };
 		B4A645B924A4842200CDFAB9 /* OperationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationButton.swift; sourceTree = "<group>"; };
 		B4A645BB24A484B000CDFAB9 /* EqualSignButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualSignButton.swift; sourceTree = "<group>"; };
 		B4E9465524A2BFBC004029B3 /* SwiftCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,7 +79,7 @@
 				B4E9465C24A2BFBC004029B3 /* ContentView.swift */,
 				B43BAB4624A5BD7000D932C1 /* DisplayView.swift */,
 				B4A645B124A47B8500CDFAB9 /* NumberPad.swift */,
-				B4A645B724A482B200CDFAB9 /* SpecialActionButton.swift */,
+				B4A645B724A482B200CDFAB9 /* SpecialButton.swift */,
 				B4A645BB24A484B000CDFAB9 /* EqualSignButton.swift */,
 				B4ED29A324A82084001062E0 /* NumberButton.swift */,
 				B4A645B924A4842200CDFAB9 /* OperationButton.swift */,
@@ -177,7 +177,7 @@
 				B4ED29A424A82085001062E0 /* NumberButton.swift in Sources */,
 				B405A73324A7374E0056D8E2 /* Model.swift in Sources */,
 				B4E9465D24A2BFBC004029B3 /* ContentView.swift in Sources */,
-				B4A645B824A482B200CDFAB9 /* SpecialActionButton.swift in Sources */,
+				B4A645B824A482B200CDFAB9 /* SpecialButton.swift in Sources */,
 				B43BAB4724A5BD7000D932C1 /* DisplayView.swift in Sources */,
 				B4A645BC24A484B000CDFAB9 /* EqualSignButton.swift in Sources */,
 			);

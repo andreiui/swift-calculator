@@ -13,7 +13,7 @@ struct EqualSignButton: View {
 	
     var body: some View {
         Button(action: {
-			
+			self.input.equalSignButtonPressed()
 		}) {
 			Text("=")
 				.frame(width: 72, height: 72)

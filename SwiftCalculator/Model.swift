@@ -14,12 +14,8 @@ struct Number {
 	var significand: String = ""
 	var signed: Bool = false
 	
-	init (double: Double = 0) {
-		self.setNumber(double: double)
-	}
-	
-	func isNew() -> Bool {
-		return (exponent == "" && !floating && significand == "")
+	init(double: Double = 0) {
+		self.setNumberFromDouble(double: double)
 	}
 	
 	mutating func toggleSigned() -> Void {
@@ -38,11 +34,11 @@ struct Number {
 		return exponent.count + significand.count
 	}
 	
-	func getNumber() -> Double {
+	func convertNumberToDouble() -> Double {
 		return Double(getDisplay().replacingOccurrences(of: ",", with: "")) ?? 0.0
 	}
 	
-	mutating func setNumber(double: Double) -> Void {
+	mutating func setNumberFromDouble(double: Double) -> Void {
 		let precision: Double = 100000000000000000.0
 		let number = String(double >= 0 ? Double(round(precision * double) / precision) : -Double(round(precision * double) / precision))
 		if !number.contains("e") {
@@ -83,7 +79,7 @@ struct Input {
 	private var inputFromUser: Number = .init()
 	private var orderForInstr: [Instruction] = []
 	private(set) var operation: String = ""
-	private(set) var reset: Bool = true
+	private(set) var clear: Bool = true
 	
 	mutating func resetInput() -> Void {
 		self = .init()
@@ -91,6 +87,7 @@ struct Input {
 	
 	mutating func clearOnDisplayView() -> Void {
 		onDisplayView = .init()
+		clear = true
 	}
 	
 	func retrieveOnDisplayView() -> String {
@@ -103,7 +100,7 @@ struct Input {
 	
 	private mutating func updateInputFromUser(value: String) -> Void {
 		let status = inputFromUser.appendToNumber(value: value)
-		reset = reset && !status
+		clear = clear && !status
 	}
 	
 	private mutating func resetInputFromUser(value: String = "") -> Void {
@@ -114,7 +111,7 @@ struct Input {
 	}
 	
 	private mutating func overwriteInputFromUser(double: Double) -> Void {
-		inputFromUser.setNumber(double: double)
+		inputFromUser.setNumberFromDouble(double: double)
 	}
 	
 	private mutating func appendToOrderOfInstr() -> Void {
@@ -122,8 +119,16 @@ struct Input {
 		orderForInstr.append(newInstruction)
 	}
 	
-	mutating func updateOperation(operation: String) -> Void {
+	private mutating func updateOperation(operation: String) -> Void {
 		self.operation = operation
+	}
+	
+	private func calculateResultFromArray(array: [Instruction]) -> Double {
+		var result = inputFromUser.convertNumberToDouble()
+		for instruction in array {
+			result = result + instruction.getNumber().convertNumberToDouble()
+		}
+		return result
 	}
 	
 	mutating func numberButtonPressed(value: String) -> Void {
@@ -131,31 +136,65 @@ struct Input {
 			updateInputFromUser(value: value)
 		}
 		else {
-			resetInputFromUser()
+			if orderForInstr.count == 0 || orderForInstr[0].getOperation() != "=" {
+				orderForInstr.append(Instruction(number: inputFromUser, operation: operation))
+			}
+			else {
+				orderForInstr[0].setOperation(operation: operation)
+			}
+			resetInputFromUser(value: value)
 			operation = ""
 		}
 		updateOnDisplayView(number: inputFromUser)
 	}
 	
 	mutating func changeSignButtonPressed() -> Void {
-		inputFromUser.toggleSigned()
+		if operation == "=" || orderForInstr.count != 0 && orderForInstr[0].getOperation() == "=" {
+			orderForInstr[0].setNumber(
+				number: Number(double: -orderForInstr[0].getNumber().convertNumberToDouble())
+			)
+			onDisplayView.setDisplay(number: orderForInstr[0].getNumber())
+		}
+		else {
+			inputFromUser.toggleSigned()
+			updateOnDisplayView(number: inputFromUser)
+		}
+	}
+	
+	mutating func percentButtonPressed() -> Void {
+		inputFromUser.setNumberFromDouble(double: inputFromUser.convertNumberToDouble() / 100.0)
 		updateOnDisplayView(number: inputFromUser)
+	}
+	
+	mutating func operationButtonPressed(operation: String) -> Void {
+		updateOperation(operation: operation)
+	}
+	
+	mutating func equalSignButtonPressed() -> Void {
+		updateOperation(operation: "=")
+		let result = calculateResultFromArray(array: orderForInstr.reversed())
+		orderForInstr = [Instruction(number: Number(double: result), operation: "=")]
+		updateOnDisplayView(number: .init(double: result))
 	}
 }
 
 private struct Display {
-	private var display: String
+	private var display: Number
 	
 	init(number: Number = .init()) {
-		display = number.getDisplay()
+		display = number
 	}
 	
-	func getDisplay() -> String {
+	func getNumber() -> Number {
 		return display
 	}
 	
+	func getDisplay() -> String {
+		return display.getDisplay()
+	}
+	
 	mutating func setDisplay(number: Number) -> Void {
-		display = number.getDisplay()
+		display = number
 	}
 }
 
@@ -172,8 +211,16 @@ private struct Instruction {
 		return operation
 	}
 	
+	mutating func setOperation(operation: String) {
+		self.operation = operation
+	}
+	
 	func getNumber() -> Number {
 		return number
+	}
+	
+	mutating func setNumber(number: Number) -> Void {
+		self.number = number
 	}
 }
 

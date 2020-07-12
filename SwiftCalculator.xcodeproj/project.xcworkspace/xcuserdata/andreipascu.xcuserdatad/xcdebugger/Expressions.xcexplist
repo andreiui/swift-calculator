@@ -18,5 +18,19 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "Input.equalSignButtonPressed():Model.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.inputFromUser">
+            </PersistentString>
+            <PersistentString
+               value = "self.orderForInstr">
+            </PersistentString>
+            <PersistentString
+               value = "self.operation">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>
