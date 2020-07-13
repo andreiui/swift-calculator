@@ -9,13 +9,15 @@
 import SwiftUI
 
 struct Number {
-	var exponent: String = "0"
+	var exponent: String = ""
 	var floating: Bool = false
 	var significand: String = ""
 	var signed: Bool = false
 	
 	init(double: Double = 0) {
-		self.setNumberFromDouble(double: double)
+		if double != 0 {
+			self.setNumberFromDouble(double: double)
+		}
 	}
 	
 	mutating func toggleSigned() -> Void {
@@ -60,7 +62,7 @@ struct Number {
 	}
 	
 	mutating func appendToNumber(value: String) -> Bool {
-		if self.getSize() > 9 { return false }
+		if self.getSize() >= 9 { return false }
 		if value == "0" && exponent == "0" { return false }
 		
 		if value == "." {
@@ -126,9 +128,24 @@ struct Input {
 	private func calculateResultFromArray(array: [Instruction]) -> Double {
 		var result = inputFromUser.convertNumberToDouble()
 		for instruction in array {
-			result = result + instruction.getNumber().convertNumberToDouble()
+			result = computeOperation(x: instruction.getNumber().convertNumberToDouble(), y: result, operation: instruction.getOperation())
 		}
 		return result
+	}
+	
+	private func computeOperation(x: Double, y: Double, operation: String) -> Double {
+		switch operation {
+			case "+":
+				return x + y
+			case "–":
+				return x - y
+			case "×":
+				return x * y
+			case "÷":
+				return x / y
+			default:
+				return 0
+		}
 	}
 	
 	mutating func numberButtonPressed(value: String) -> Void {
@@ -162,6 +179,7 @@ struct Input {
 	}
 	
 	mutating func percentButtonPressed() -> Void {
+		inputFromUser = onDisplayView.getNumber()
 		inputFromUser.setNumberFromDouble(double: inputFromUser.convertNumberToDouble() / 100.0)
 		updateOnDisplayView(number: inputFromUser)
 	}
