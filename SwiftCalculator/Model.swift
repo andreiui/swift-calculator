@@ -198,7 +198,7 @@ struct Input {
 	}
 	
 	mutating func operationButtonPressed(operation: String) -> Void {
-		if selectedOperation == "=" { orderForInstr = [] }
+		if selectedOperation == "=" || selectedOperation == "%" { orderForInstr = [] }
 		updateSelectedOperation(operation: operation)
 	}
 	
