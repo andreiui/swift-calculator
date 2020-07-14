@@ -40,6 +40,10 @@ struct Number {
 		return Double(getDisplay().replacingOccurrences(of: ",", with: "")) ?? 0.0
 	}
 	
+	mutating func overwriteNumber(number: Number) -> Void {
+		self = number
+	}
+	
 	mutating func setNumberFromDouble(double: Double) -> Void {
 		let precision: Double = 100000000000000000.0
 		let number = String(double >= 0 ? Double(round(precision * double) / precision) : -Double(round(precision * double) / precision))
@@ -63,7 +67,7 @@ struct Number {
 	
 	mutating func appendToNumber(value: String) -> Bool {
 		if self.getSize() >= 9 { return false }
-		if value == "0" && exponent == "0" { return false }
+		if value == "0" && exponent == "" { return false }
 		
 		if value == "." {
 			if !self.floating { self.floating.toggle() }
@@ -77,58 +81,32 @@ struct Number {
 }
 
 struct Input {
-	private var onDisplayView: Display = .init()
-	private var inputFromUser: Number = .init()
+	private var onDisplay: Number = .init()
 	private var orderForInstr: [Instruction] = []
-	private(set) var operation: String = ""
+	private(set) var selectedOperation: String = ""
 	private(set) var clear: Bool = true
 	
 	mutating func resetInput() -> Void {
 		self = .init()
 	}
 	
-	mutating func clearOnDisplayView() -> Void {
-		onDisplayView = .init()
+	mutating func clearOnDisplay() -> Void {
+		onDisplay = .init()
 		clear = true
 	}
 	
-	func retrieveOnDisplayView() -> String {
-		return onDisplayView.getDisplay()
-	}
-	
-	private mutating func updateOnDisplayView(number: Number) -> Void {
-		onDisplayView.setDisplay(number: number)
-	}
-	
-	private mutating func updateInputFromUser(value: String) -> Void {
-		let status = inputFromUser.appendToNumber(value: value)
-		clear = clear && !status
-	}
-	
-	private mutating func resetInputFromUser(value: String = "") -> Void {
-		inputFromUser = .init()
-		if value != "" {
-			_ = inputFromUser.appendToNumber(value: value)
-		}
-	}
-	
-	private mutating func overwriteInputFromUser(double: Double) -> Void {
-		inputFromUser.setNumberFromDouble(double: double)
-	}
-	
-	private mutating func appendToOrderOfInstr() -> Void {
-		let newInstruction = Instruction(number: inputFromUser, operation: operation)
-		orderForInstr.append(newInstruction)
-	}
-	
-	private mutating func updateOperation(operation: String) -> Void {
-		self.operation = operation
+	func retrieveOnDisplay() -> String {
+		return onDisplay.getDisplay()
 	}
 	
 	private func calculateResultFromArray(array: [Instruction]) -> Double {
-		var result = inputFromUser.convertNumberToDouble()
+		var result = onDisplay.convertNumberToDouble()
 		for instruction in array {
-			result = computeOperation(x: instruction.getNumber().convertNumberToDouble(), y: result, operation: instruction.getOperation())
+			result = computeOperation(
+				x: instruction.getNumber().convertNumberToDouble(),
+				y: result,
+				operation: instruction.getOperation()
+			)
 		}
 		return result
 	}
@@ -148,51 +126,83 @@ struct Input {
 		}
 	}
 	
+	private mutating func updateOnDisplay(value: String) -> Void {
+		let status = onDisplay.appendToNumber(value: value)
+		clear = clear && !status
+	}
+	
+	private mutating func resetOnDisplay(value: String = "") -> Void {
+		onDisplay = .init()
+		if value != "" {
+			_ = onDisplay.appendToNumber(value: value)
+		}
+	}
+	
+	private mutating func overwriteOnDisplay(double: Double) -> Void {
+		onDisplay.setNumberFromDouble(double: double)
+	}
+	
+	private mutating func appendToOrderOfInstr() -> Void {
+		let newInstruction = Instruction(number: onDisplay, operation: selectedOperation)
+		orderForInstr.append(newInstruction)
+	}
+	
+	private mutating func updateSelectedOperation(operation: String) -> Void {
+		selectedOperation = operation
+	}
+	
 	mutating func numberButtonPressed(value: String) -> Void {
-		if operation == "" {
-			updateInputFromUser(value: value)
+		switch selectedOperation {
+		case "":
+			updateOnDisplay(value: value)
+			return
+		case "=":
+			resetOnDisplay(value: value)
+			orderForInstr = []
+		default:
+			orderForInstr.append(Instruction(
+				number: onDisplay,
+				operation: selectedOperation
+			))
+			resetOnDisplay(value: value)
 		}
-		else {
-			if orderForInstr.count == 0 || orderForInstr[0].getOperation() != "=" {
-				orderForInstr.append(Instruction(number: inputFromUser, operation: operation))
-			}
-			else {
-				orderForInstr[0].setOperation(operation: operation)
-			}
-			resetInputFromUser(value: value)
-			operation = ""
-		}
-		updateOnDisplayView(number: inputFromUser)
+		updateSelectedOperation(operation: "")
 	}
 	
 	mutating func changeSignButtonPressed() -> Void {
-		if operation == "=" || orderForInstr.count != 0 && orderForInstr[0].getOperation() == "=" {
-			orderForInstr[0].setNumber(
-				number: Number(double: -orderForInstr[0].getNumber().convertNumberToDouble())
-			)
-			onDisplayView.setDisplay(number: orderForInstr[0].getNumber())
-		}
-		else {
-			inputFromUser.toggleSigned()
-			updateOnDisplayView(number: inputFromUser)
-		}
+		
 	}
 	
 	mutating func percentButtonPressed() -> Void {
-		inputFromUser = onDisplayView.getNumber()
-		inputFromUser.setNumberFromDouble(double: inputFromUser.convertNumberToDouble() / 100.0)
-		updateOnDisplayView(number: inputFromUser)
+		onDisplay.setNumberFromDouble(double: onDisplay.convertNumberToDouble() / 100.0)
+		updateSelectedOperation(operation: "=")
 	}
 	
 	mutating func operationButtonPressed(operation: String) -> Void {
-		updateOperation(operation: operation)
+		updateSelectedOperation(operation: operation)
 	}
 	
 	mutating func equalSignButtonPressed() -> Void {
-		updateOperation(operation: "=")
+		if orderForInstr.count == 0 { return }
 		let result = calculateResultFromArray(array: orderForInstr.reversed())
-		orderForInstr = [Instruction(number: Number(double: result), operation: "=")]
-		updateOnDisplayView(number: .init(double: result))
+		if selectedOperation != "=" {
+			orderForInstr = [Instruction(
+				number: onDisplay,
+				operation: orderForInstr.last!.getOperation())
+			]
+		}
+		onDisplay.setNumberFromDouble(double: result)
+		updateSelectedOperation(operation: "=")
+	}
+	
+	private mutating func _unsafeEqualSignButtonPressed() -> Void {
+		if orderForInstr.count == 0 { return }
+		updateSelectedOperation(operation: "=")
+		let result = calculateResultFromArray(array: orderForInstr.reversed())
+		orderForInstr = [Instruction(
+			number: Number(double: result),
+			operation: orderForInstr.last!.getOperation()
+			)]
 	}
 }
 
@@ -213,6 +223,15 @@ private struct Display {
 	
 	mutating func setDisplay(number: Number) -> Void {
 		display = number
+	}
+	
+	mutating func updateDisplay(value: String) -> Void {
+		_ = display.appendToNumber(value: value)
+	}
+	
+	mutating func resetDisplay(value: String = "") {
+		display = .init()
+		if value != "" { updateDisplay(value: value) }
 	}
 }
 

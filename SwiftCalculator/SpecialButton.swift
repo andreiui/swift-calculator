@@ -13,7 +13,7 @@ struct ClearButton: View {
 	
     var body: some View {
         Button(action: {
-			self.input.clearOnDisplayView()
+			self.input.clearOnDisplay()
 			withAnimation { self.input.resetInput() }
 		}) {
 			Text(input.clear ? "AC" : "C")
