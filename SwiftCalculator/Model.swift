@@ -45,7 +45,7 @@ struct Number {
 	}
 	
 	mutating func setNumberFromDouble(double: Double) -> Void {
-		let precision: Double = 100000000000000000.0
+		let precision: Double = 1000000000000.0
 		let number = String(double >= 0 ? Double(round(precision * double) / precision) : -Double(round(precision * double) / precision))
 		if !number.contains("e") {
 			exponent = String(number[..<(number.firstIndex(of: ".") ?? number.endIndex)])
@@ -101,6 +101,7 @@ struct Input {
 	
 	private func calculateResultFromArray(array: [Instruction]) -> Double {
 		var result = onDisplay.convertNumberToDouble()
+		if array.count == 0 { return result }
 		for instruction in array {
 			result = computeOperation(
 				x: instruction.getNumber().convertNumberToDouble(),
@@ -126,6 +127,22 @@ struct Input {
 		}
 	}
 	
+	private func convertInstruction(instruction: Instruction) -> Instruction {
+		if instruction.getOperation() == "–" {
+			return Instruction(
+				number: Number(double: -instruction.getNumber().convertNumberToDouble()),
+				operation: "+"
+			)
+		}
+		if instruction.getOperation() == "÷" {
+			return Instruction(
+				number: Number(double: 1 / instruction.getNumber().convertNumberToDouble()),
+				operation: "×"
+			)
+		}
+		return instruction
+	}
+	
 	private mutating func updateOnDisplay(value: String) -> Void {
 		let status = onDisplay.appendToNumber(value: value)
 		clear = clear && !status
@@ -147,7 +164,7 @@ struct Input {
 		orderForInstr.append(newInstruction)
 	}
 	
-	private mutating func updateSelectedOperation(operation: String) -> Void {
+	mutating func updateSelectedOperation(operation: String) -> Void {
 		selectedOperation = operation
 	}
 	
@@ -159,6 +176,9 @@ struct Input {
 		case "=":
 			resetOnDisplay(value: value)
 			orderForInstr = []
+		case "%":
+			resetOnDisplay(value: value)
+			orderForInstr = []
 		default:
 			orderForInstr.append(Instruction(
 				number: onDisplay,
@@ -166,72 +186,37 @@ struct Input {
 			))
 			resetOnDisplay(value: value)
 		}
-		updateSelectedOperation(operation: "")
 	}
 	
 	mutating func changeSignButtonPressed() -> Void {
-		
+		onDisplay.toggleSigned()
 	}
 	
 	mutating func percentButtonPressed() -> Void {
 		onDisplay.setNumberFromDouble(double: onDisplay.convertNumberToDouble() / 100.0)
-		updateSelectedOperation(operation: "=")
+		updateSelectedOperation(operation: "%")
 	}
 	
 	mutating func operationButtonPressed(operation: String) -> Void {
+		if selectedOperation == "=" { orderForInstr = [] }
 		updateSelectedOperation(operation: operation)
 	}
 	
 	mutating func equalSignButtonPressed() -> Void {
-		if orderForInstr.count == 0 { return }
+		if orderForInstr.count == 0 {
+			if selectedOperation == "" || selectedOperation == "%" { return }
+			orderForInstr = [Instruction(number: onDisplay, operation: selectedOperation)]
+		}
 		let result = calculateResultFromArray(array: orderForInstr.reversed())
-		if selectedOperation != "=" {
-			orderForInstr = [Instruction(
-				number: onDisplay,
-				operation: orderForInstr.last!.getOperation())
-			]
+		if selectedOperation != "=" && selectedOperation != "%" {
+			orderForInstr = [convertInstruction(
+				instruction: Instruction(
+					number: onDisplay,
+					operation: orderForInstr.last!.getOperation()
+				)
+			)]
 		}
 		onDisplay.setNumberFromDouble(double: result)
-		updateSelectedOperation(operation: "=")
-	}
-	
-	private mutating func _unsafeEqualSignButtonPressed() -> Void {
-		if orderForInstr.count == 0 { return }
-		updateSelectedOperation(operation: "=")
-		let result = calculateResultFromArray(array: orderForInstr.reversed())
-		orderForInstr = [Instruction(
-			number: Number(double: result),
-			operation: orderForInstr.last!.getOperation()
-			)]
-	}
-}
-
-private struct Display {
-	private var display: Number
-	
-	init(number: Number = .init()) {
-		display = number
-	}
-	
-	func getNumber() -> Number {
-		return display
-	}
-	
-	func getDisplay() -> String {
-		return display.getDisplay()
-	}
-	
-	mutating func setDisplay(number: Number) -> Void {
-		display = number
-	}
-	
-	mutating func updateDisplay(value: String) -> Void {
-		_ = display.appendToNumber(value: value)
-	}
-	
-	mutating func resetDisplay(value: String = "") {
-		display = .init()
-		if value != "" { updateDisplay(value: value) }
 	}
 }
 

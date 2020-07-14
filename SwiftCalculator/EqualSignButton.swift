@@ -14,6 +14,7 @@ struct EqualSignButton: View {
     var body: some View {
         Button(action: {
 			self.input.equalSignButtonPressed()
+			withAnimation { self.input.updateSelectedOperation(operation: "=") }
 		}) {
 			Text("=")
 				.frame(width: 72, height: 72)

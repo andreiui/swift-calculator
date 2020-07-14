@@ -15,6 +15,7 @@ struct NumberButton: View {
     var body: some View {
         Button(action: {
 			self.input.numberButtonPressed(value: String(self.value))
+			withAnimation{ self.input.updateSelectedOperation(operation: "") }
 		}) {
 			Text(String(self.value))
 				.frame(width: 72, height: 72)
@@ -34,6 +35,7 @@ struct ZeroButton: View {
     var body: some View {
         Button(action: {
 			self.input.numberButtonPressed(value: "0")
+			withAnimation{ self.input.updateSelectedOperation(operation: "") }
 		}) {
 			Text("0")
 				.frame(width: 133, height: 72, alignment: .leading)
@@ -54,6 +56,7 @@ struct DotButton: View {
     var body: some View {
         Button(action: {
 			self.input.numberButtonPressed(value: ".")
+			withAnimation{ self.input.updateSelectedOperation(operation: "") }
 		}) {
 			Text(".")
 				.frame(width: 72, height: 72)
