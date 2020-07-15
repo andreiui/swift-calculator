@@ -19,11 +19,10 @@ struct OperationButton: View {
 			Text(self.operation)
 				.frame(width: 72, height: 72)
 				.font(.largeTitle)
-				.foregroundColor(self.input.selectedOperation != operation ? Color.white : Color(.systemTeal))
-				.background(self.input.selectedOperation != operation ? Color(.systemTeal) : Color.black)
+				.foregroundColor(self.input.selectedOperation != operation ? Color.white : Color(.systemBlue))
+				.background(self.input.selectedOperation != operation ? Color(.systemBlue) : Color.black)
 				.clipShape(Circle())
 		}
-		.buttonStyle(PlainButtonStyle())
-		.padding(4)
+		.modifier(CalculatorButtonViewModifier())
     }
 }

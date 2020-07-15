@@ -17,13 +17,11 @@ struct EqualSignButton: View {
 			withAnimation { self.input.updateSelectedOperation(operation: "=") }
 		}) {
 			Text("=")
-				.frame(width: 72, height: 72)
-				.font(.largeTitle)
-				.foregroundColor(Color.white)
-				.background(Color(.systemBlue))
-				.clipShape(Circle())
+				.modifier(CalculatorButtonTextModifier(
+					background: Color(.systemBlue)
+					)
+				)
 		}
-		.buttonStyle(PlainButtonStyle())
-		.padding(4)
+		.modifier(CalculatorButtonViewModifier())
     }
 }

@@ -17,14 +17,13 @@ struct ClearButton: View {
 			withAnimation { self.input.resetInput() }
 		}) {
 			Text(input.clear ? "AC" : "C")
-				.frame(width: 72, height: 72)
 				.font(.title)
-				.foregroundColor(Color.white)
-				.background(Color(.systemGray2))
-				.clipShape(Circle())
+				.modifier(CalculatorButtonTextModifier(
+					background: Color(.systemGray2)
+					)
+				)
 		}
-		.buttonStyle(PlainButtonStyle())
-		.padding(4)
+		.modifier(CalculatorButtonViewModifier())
     }
 }
 
@@ -36,14 +35,13 @@ struct ChangeSignButton: View {
 			self.input.changeSignButtonPressed()
 		}) {
 			Text("+/-")
-				.frame(width: 72, height: 72)
 				.font(.title)
-				.foregroundColor(Color.white)
-				.background(Color(.systemGray2))
-				.clipShape(Circle())
+				.modifier(CalculatorButtonTextModifier(
+					background: Color(.systemGray2)
+					)
+				)
 		}
-		.buttonStyle(PlainButtonStyle())
-		.padding(4)
+		.modifier(CalculatorButtonViewModifier())
     }
 }
 
@@ -55,13 +53,12 @@ struct PercentButton: View {
 			self.input.percentButtonPressed()
 		}) {
 			Text("%")
-				.frame(width: 72, height: 72)
 				.font(.title)
-				.foregroundColor(Color.white)
-				.background(Color(.systemGray2))
-				.clipShape(Circle())
+				.modifier(CalculatorButtonTextModifier(
+					background: Color(.systemGray2)
+					)
+				)
 		}
-		.buttonStyle(PlainButtonStyle())
-		.padding(4)
+		.modifier(CalculatorButtonViewModifier())
     }
 }

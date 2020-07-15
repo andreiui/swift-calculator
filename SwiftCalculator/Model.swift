@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct Number {
-	var exponent: String = ""
-	var floating: Bool = false
-	var significand: String = ""
-	var signed: Bool = false
+	private var exponent: String = ""
+	private var floating: Bool = false
+	private var significand: String = ""
+	private var signed: Bool = false
 	
 	init(double: Double = 0) {
 		if double != 0 {
@@ -25,6 +25,7 @@ struct Number {
 	}
 	
 	func getDisplay() -> String {
+		if exponent == "inf" { return "Error"}
 		return (
 			(signed ? "-" : "") +
 			(exponent.contains("e") ? exponent : String(Int(exponent)?.formattedWithSeparator ?? "0")) +
@@ -32,7 +33,7 @@ struct Number {
 		)
 	}
 	
-	func getSize() -> Int {
+	private func getSize() -> Int {
 		return exponent.count + significand.count
 	}
 	
@@ -44,7 +45,16 @@ struct Number {
 		self = number
 	}
 	
+	mutating func setNumberToError() -> Void {
+		self = .init()
+		exponent = "inf"
+	}
+	
 	mutating func setNumberFromDouble(double: Double) -> Void {
+		if String(double) == "inf" {
+			setNumberToError()
+			return
+		}
 		let precision: Double = 1000000000000.0
 		let number = String(double >= 0 ? Double(round(precision * double) / precision) : -Double(round(precision * double) / precision))
 		if !number.contains("e") {
@@ -67,7 +77,7 @@ struct Number {
 	
 	mutating func appendToNumber(value: String) -> Bool {
 		if self.getSize() >= 9 { return false }
-		if value == "0" && exponent == "" { return false }
+		if value == "0" && exponent == "" && !floating { return false }
 		
 		if value == "." {
 			if !self.floating { self.floating.toggle() }
@@ -121,7 +131,7 @@ struct Input {
 			case "×":
 				return x * y
 			case "÷":
-				return x / y
+				return y != 0 ? x / y : Double.infinity
 			default:
 				return 0
 		}
@@ -217,6 +227,7 @@ struct Input {
 			)]
 		}
 		onDisplay.setNumberFromDouble(double: result)
+		if onDisplay.getDisplay() == "Error" { orderForInstr = [] }
 	}
 }
 

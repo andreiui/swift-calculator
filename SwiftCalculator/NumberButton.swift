@@ -18,14 +18,12 @@ struct NumberButton: View {
 			withAnimation{ self.input.updateSelectedOperation(operation: "") }
 		}) {
 			Text(String(self.value))
-				.frame(width: 72, height: 72)
-				.font(.largeTitle)
-				.foregroundColor(Color.white)
-				.background(Color(.systemGray4))
-				.clipShape(Circle())
+				.modifier(CalculatorButtonTextModifier(
+					background: Color(.systemGray4)
+					)
+				)
 		}
-		.buttonStyle(PlainButtonStyle())
-		.padding(4)
+		.modifier(CalculatorButtonViewModifier())
     }
 }
 
@@ -38,15 +36,9 @@ struct ZeroButton: View {
 			withAnimation{ self.input.updateSelectedOperation(operation: "") }
 		}) {
 			Text("0")
-				.frame(width: 133, height: 72, alignment: .leading)
-				.padding(.leading, 26)
-				.font(.largeTitle)
-				.foregroundColor(Color.white)
-				.background(Color(.systemGray4))
-				.cornerRadius(100)
+				.modifier(ZeroButtonTextModifier())
 		}
-		.buttonStyle(PlainButtonStyle())
-		.padding(4)
+		.modifier(CalculatorButtonViewModifier())
     }
 }
 
@@ -59,14 +51,12 @@ struct DotButton: View {
 			withAnimation{ self.input.updateSelectedOperation(operation: "") }
 		}) {
 			Text(".")
-				.frame(width: 72, height: 72)
-				.font(.largeTitle)
-				.foregroundColor(Color.white)
-				.background(Color(.systemGray4))
-				.cornerRadius(100)
+				.modifier(CalculatorButtonTextModifier(
+					background: Color(.systemGray4)
+					)
+				)
 		}
-		.buttonStyle(PlainButtonStyle())
-		.padding(4)
+		.modifier(CalculatorButtonViewModifier())
     }
 }
 
