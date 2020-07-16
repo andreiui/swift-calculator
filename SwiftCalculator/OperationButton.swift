@@ -1,6 +1,6 @@
 //
 //  OperationButton.swift
-//  SwiftUICalculator
+//  SwiftCalculator
 //
 //  Created by Andrei Pascu on 6/24/20.
 //  Copyright © 2020 Andrei Pascu. All rights reserved.
@@ -17,8 +17,7 @@ struct OperationButton: View {
 			withAnimation { self.input.operationButtonPressed(operation: self.operation) }
 		}) {
 			Text(self.operation)
-				.frame(width: 72, height: 72)
-				.font(.largeTitle)
+				.modifier(OperationButtonTextModifier())
 				.foregroundColor(self.input.selectedOperation != operation ? Color.white : Color(.systemBlue))
 				.background(self.input.selectedOperation != operation ? Color(.systemBlue) : Color.black)
 				.clipShape(Circle())

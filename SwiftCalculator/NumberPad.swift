@@ -1,6 +1,6 @@
 //
 //  NumberPad.swift
-//  SwiftUICalculator
+//  SwiftCalculator
 //
 //  Created by Andrei Pascu on 6/24/20.
 //  Copyright © 2020 Andrei Pascu. All rights reserved.

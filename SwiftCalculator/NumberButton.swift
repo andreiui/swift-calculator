@@ -1,6 +1,6 @@
 //
 //  NumberButton.swift
-//  SwiftUICalculator
+//  SwiftCalculator
 //
 //  Created by Andrei Pascu on 6/24/20.
 //  Copyright © 2020 Andrei Pascu. All rights reserved.
@@ -18,10 +18,7 @@ struct NumberButton: View {
 			withAnimation{ self.input.updateSelectedOperation(operation: "") }
 		}) {
 			Text(String(self.value))
-				.modifier(CalculatorButtonTextModifier(
-					background: Color(.systemGray4)
-					)
-				)
+				.modifier(NumberButtonTextModifier())
 		}
 		.modifier(CalculatorButtonViewModifier())
     }
@@ -51,10 +48,7 @@ struct DotButton: View {
 			withAnimation{ self.input.updateSelectedOperation(operation: "") }
 		}) {
 			Text(".")
-				.modifier(CalculatorButtonTextModifier(
-					background: Color(.systemGray4)
-					)
-				)
+				.modifier(NumberButtonTextModifier())
 		}
 		.modifier(CalculatorButtonViewModifier())
     }

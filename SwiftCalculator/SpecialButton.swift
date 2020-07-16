@@ -1,6 +1,6 @@
 //
 //  SpecialButton.swift
-//  SwiftUICalculator
+//  SwiftCalculator
 //
 //  Created by Andrei Pascu on 6/24/20.
 //  Copyright © 2020 Andrei Pascu. All rights reserved.
@@ -18,10 +18,7 @@ struct ClearButton: View {
 		}) {
 			Text(input.clear ? "AC" : "C")
 				.font(.title)
-				.modifier(CalculatorButtonTextModifier(
-					background: Color(.systemGray2)
-					)
-				)
+				.modifier(SpecialButtonTextModifier())
 		}
 		.modifier(CalculatorButtonViewModifier())
     }
@@ -36,10 +33,7 @@ struct ChangeSignButton: View {
 		}) {
 			Text("+/-")
 				.font(.title)
-				.modifier(CalculatorButtonTextModifier(
-					background: Color(.systemGray2)
-					)
-				)
+				.modifier(SpecialButtonTextModifier())
 		}
 		.modifier(CalculatorButtonViewModifier())
     }
@@ -54,10 +48,7 @@ struct PercentButton: View {
 		}) {
 			Text("%")
 				.font(.title)
-				.modifier(CalculatorButtonTextModifier(
-					background: Color(.systemGray2)
-					)
-				)
+				.modifier(SpecialButtonTextModifier())
 		}
 		.modifier(CalculatorButtonViewModifier())
     }
