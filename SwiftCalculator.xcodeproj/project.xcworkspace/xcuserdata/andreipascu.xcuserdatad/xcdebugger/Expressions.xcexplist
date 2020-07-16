@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Input.numberButtonPressed(value:):Model.swift">
+      </ContextState>
+      <ContextState
          contextName = "Input.setNumber(number:):Model.swift">
          <PersistentStrings>
             <PersistentString
@@ -11,24 +14,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Input.equalSignButtonPressed():Model.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.orderForInstr[0].getOperation()">
-            </PersistentString>
-            <PersistentString
-               value = "self.onDisplay.convertNumberToDouble()">
-            </PersistentString>
-            <PersistentString
-               value = "self.orderForInstr[0].getNumber().convertNumberToDouble()">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "Input.calculateResultFromArray(array:):Model.swift">
          <PersistentStrings>
             <PersistentString
                value = "instruction.getNumber().convertNumberToDouble()">
+            </PersistentString>
+            <PersistentString
+               value = "instruction.getOperation()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -45,6 +37,34 @@
          <PersistentStrings>
             <PersistentString
                value = "Double.infinity">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Input.equalSignButtonPressed():Model.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.orderForInstr[0].getOperation()">
+            </PersistentString>
+            <PersistentString
+               value = "self.orderForInstr[0].getNumber().convertNumberToDouble()">
+            </PersistentString>
+            <PersistentString
+               value = "self.onDisplay.convertNumberToDouble()">
+            </PersistentString>
+            <PersistentString
+               value = "self.orderForInstr">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Input.operationButtonPressed(operation:):Model.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.orderForInstr">
+            </PersistentString>
+            <PersistentString
+               value = "self.onDisplay.convertNumberToDouble()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

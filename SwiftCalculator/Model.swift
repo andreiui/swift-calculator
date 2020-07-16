@@ -95,6 +95,7 @@ struct Input {
 	private var orderForInstr: [Instruction] = []
 	private(set) var selectedOperation: String = ""
 	private(set) var clear: Bool = true
+	private(set) var resultFromOperation: Bool = false
 	
 	mutating func resetInput() -> Void {
 		self = .init()
@@ -190,12 +191,16 @@ struct Input {
 			resetOnDisplay(value: value)
 			orderForInstr = []
 		default:
+			if orderForInstr.count == 1 && resultFromOperation {
+				orderForInstr = []
+			}
 			orderForInstr.append(Instruction(
 				number: onDisplay,
 				operation: selectedOperation
 			))
 			resetOnDisplay(value: value)
 		}
+		resultFromOperation = false
 	}
 	
 	mutating func changeSignButtonPressed() -> Void {
@@ -209,7 +214,19 @@ struct Input {
 	
 	mutating func operationButtonPressed(operation: String) -> Void {
 		if selectedOperation == "=" || selectedOperation == "%" { orderForInstr = [] }
-		updateSelectedOperation(operation: operation)
+		else if selectedOperation == "" && orderForInstr.count != 0 {
+			if operation == "+" || operation == "–" {
+				equalSignButtonPressed()
+				resultFromOperation = true
+			}
+			if operation == "×" || operation == "÷" {
+				if orderForInstr[0].getOperation() == "×" ||
+					orderForInstr.last!.getOperation() == "÷" {
+					equalSignButtonPressed()
+					resultFromOperation = true
+				}
+			}
+		}
 	}
 	
 	mutating func equalSignButtonPressed() -> Void {
@@ -218,7 +235,7 @@ struct Input {
 			orderForInstr = [Instruction(number: onDisplay, operation: selectedOperation)]
 		}
 		let result = calculateResultFromArray(array: orderForInstr.reversed())
-		if selectedOperation != "=" && selectedOperation != "%" {
+		if selectedOperation != "=" && selectedOperation != "%" && !resultFromOperation {
 			orderForInstr = [convertInstruction(
 				instruction: Instruction(
 					number: onDisplay,

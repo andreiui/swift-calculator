@@ -14,7 +14,8 @@ struct OperationButton: View {
 	
     var body: some View {
         Button(action: {
-			withAnimation { self.input.operationButtonPressed(operation: self.operation) }
+			self.input.operationButtonPressed(operation: self.operation)
+			withAnimation { self.input.updateSelectedOperation(operation: self.operation) }
 		}) {
 			Text(self.operation)
 				.modifier(OperationButtonTextModifier())
